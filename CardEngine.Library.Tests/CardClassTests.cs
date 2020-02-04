@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CardEngine.Library.Tests
 {
     [TestFixture]
-    public class CardEngineTests
+    public class CardClassTests
     {
         [Test]
         public void TestFramework_Active()
