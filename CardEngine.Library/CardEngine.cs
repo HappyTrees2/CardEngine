@@ -87,12 +87,4 @@ namespace CardEngine.Library
             Suit = suit;
         }
     }
-
-    public static class CardEngine
-    {
-        public static Card CreateCard(string val, string suit)
-        {
-            return new Card(val, suit);
-        }
-    }
 }

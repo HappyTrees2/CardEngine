@@ -21,7 +21,7 @@ namespace CardEngine.Library.Tests
         {
             string val = "Ace";
             string suit = "Clubs";
-            Card card = CardEngine.CreateCard(val, suit);
+            Card card = new Card(val, suit);
             Assert.IsInstanceOf<Card>(card);
             Assert.AreEqual(val, card.String_Value);
             Assert.AreEqual(suit, card.Suit);
@@ -33,7 +33,7 @@ namespace CardEngine.Library.Tests
             )
         {
             string suit = "Clubs";
-            Card card = CardEngine.CreateCard(val, suit);
+            Card card = new Card(val, suit);
             Assert.AreEqual(val, card.String_Value);
         }
 
@@ -44,7 +44,7 @@ namespace CardEngine.Library.Tests
         public void CardEngine_ClassCardConstructor_ConvertsToFace(string val, string expected)
         {
             string suit = "Clubs";
-            Card card = CardEngine.CreateCard(val, suit);
+            Card card = new Card(val, suit);
             Assert.AreEqual(expected, card.String_Value);
         }
 
@@ -54,7 +54,7 @@ namespace CardEngine.Library.Tests
             )
         {
             string suit = "Clubs";
-            Assert.Throws<ArgumentException>(delegate { CardEngine.CreateCard(val, suit); } );
+            Assert.Throws<ArgumentException>(delegate { new Card(val, suit); } );
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace CardEngine.Library.Tests
             )
         {
             string val = "1";
-            Assert.Throws<ArgumentException>(delegate { CardEngine.CreateCard(val, suit); });
+            Assert.Throws<ArgumentException>(delegate { new Card(val, suit); });
         }
 
         [TestCase("Ace", 1)]
