@@ -11,7 +11,7 @@ namespace CardEngine.Library.Tests
     public class CardClassTests
     {
         [Test]
-        public void TestFramework_Active()
+        public void CardClassTestFrameworkActive()
         {
             Assert.Pass();
         }
