@@ -88,7 +88,7 @@ namespace CardEngine.Library
         }
     }
 
-    public class CardEngine
+    public static class CardEngine
     {
         public static Card CreateCard(string val, string suit)
         {
