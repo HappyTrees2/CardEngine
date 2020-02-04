@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CardEngine.Library
 {
-    public class Card
+    public class Card : IEquatable<Card>
     {
         private string string_value;
         private string suit;
@@ -21,27 +21,27 @@ namespace CardEngine.Library
                     string_value = "Ace";
                     Integer_Value = 1;
                 }
-                else if (value.ToLower() == "10" || value.ToLower() == "jack")
+                else if (value.ToLower() == "11" || value.ToLower() == "jack")
                 {
                     string_value = "Jack";
-                    Integer_Value = 10;
-                }
-                else if (value.ToLower() == "11" || value.ToLower() == "queen")
-                {
-                    string_value = "Queen";
                     Integer_Value = 11;
                 }
-                else if (value.ToLower() == "12" || value.ToLower() == "king")
+                else if (value.ToLower() == "12" || value.ToLower() == "queen")
+                {
+                    string_value = "Queen";
+                    Integer_Value = 12;
+                }
+                else if (value.ToLower() == "13" || value.ToLower() == "king")
                 {
                     string_value = "King";
-                    Integer_Value = 12;
+                    Integer_Value = 13;
                 }
                 else
                 {
                     try
                     {
                         int checkVal = Convert.ToInt32(value);
-                        if (1 < checkVal && checkVal < 10)
+                        if (1 < checkVal && checkVal < 11)
                         {
                             string_value = value;
                             Integer_Value = Convert.ToInt32(value);
@@ -70,7 +70,9 @@ namespace CardEngine.Library
                     value.ToLower() == "spades"
                     )
                 {
-                    suit = value;
+                    //Capitalization reformatting trick: 
+                    //https://www.educative.io/edpresso/how-to-capitalize-the-first-letter-of-a-string-in-c-sharp
+                    suit = value.ToUpper()[0] + value.ToLower().Substring(1);
                 }
                 else
                 {
@@ -85,6 +87,42 @@ namespace CardEngine.Library
         {
             String_Value = val;
             Suit = suit;
+        }
+
+        public bool Equals(Card other)
+        {
+            if (this.String_Value == other.String_Value && this.Suit == other.Suit)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    public class Deck
+    {
+        public readonly List<Card> cards;
+
+        public Deck(string options)
+        {
+            switch (options)
+            {
+                case "standard":
+                    cards = new List<Card>();
+                    string[] suits = new string[4] { "Clubs", "Hearts", "Spades", "Diamonds" };
+                    foreach (string suit in suits)
+                    {
+                        for (int val = 1; val <= 13; val++)
+                        {
+                            cards.Add(new Card(Convert.ToString(val), suit));
+                        }
+                    }
+                    break;
+            }
+
         }
     }
 }

@@ -29,7 +29,7 @@ namespace CardEngine.Library.Tests
 
         [Test]
         public void CardEngine_ClassCardGet_ReturnsValueOrFace(
-            [Values("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "Jack", "Queen", "King")] string val
+            [Values("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King")] string val
             )
         {
             string suit = "Clubs";
@@ -38,9 +38,9 @@ namespace CardEngine.Library.Tests
         }
 
         [TestCase("1", "Ace")]
-        [TestCase("10", "Jack")]
-        [TestCase("11", "Queen")]
-        [TestCase("12", "King")]
+        [TestCase("11", "Jack")]
+        [TestCase("12", "Queen")]
+        [TestCase("13", "King")]
         public void CardEngine_ClassCardConstructor_ConvertsToFace(string val, string expected)
         {
             string suit = "Clubs";
@@ -76,12 +76,13 @@ namespace CardEngine.Library.Tests
         [TestCase("7", 7)]
         [TestCase("8", 8)]
         [TestCase("9", 9)]
-        [TestCase("Jack", 10)]
         [TestCase("10", 10)]
-        [TestCase("Queen", 11)]
+        [TestCase("Jack", 11)]
         [TestCase("11", 11)]
-        [TestCase("King", 12)]
+        [TestCase("Queen", 12)]
         [TestCase("12", 12)]
+        [TestCase("King", 13)]
+        [TestCase("13", 13)]
         public void CardEngine_ClassCardGetIntVal_ReturnsIntegerValueOfCard(string val, int expected)
         {
             string suit = "Clubs";

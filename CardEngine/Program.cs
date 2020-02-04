@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CardEngine.Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,12 @@ namespace CardEngine
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Git");
+            Deck deck = new Deck("standard");
+
+            for (int i = 0; i < 52; i++)
+            {
+                Console.WriteLine(deck.cards.ElementAt(i).String_Value + " of " + deck.cards.ElementAt(i).Suit);
+            }
         }
     }
 }
