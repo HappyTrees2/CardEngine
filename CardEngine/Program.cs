@@ -12,14 +12,27 @@ namespace CardEngine
         static void Main(string[] args)
         {
             Deck deck = new Deck("standard");
-            Deck deepcopyDeck = (Deck)deck.DeepCopy();
+            Player player1 = new Player();
+            Player player2 = new Player();
 
             deck.shuffle();
+            player1.TakeCard(deck.GiveTopCard());
+            player2.TakeCard(deck.GiveTopCard());
 
-            for (int i = 0; i < deck.cards.Count; i++)
+            Console.WriteLine("Player 1: " + player1.Cards[0].String_Value + " of " + player1.Cards[0].Suit);
+            Console.WriteLine("Player 2: " + player2.Cards[0].String_Value + " of " + player2.Cards[0].Suit);
+
+            if (player1.Cards[0].Integer_Value > player2.Cards[0].Integer_Value)
             {
-                Console.Write(deepcopyDeck.cards.ElementAt(i).String_Value + " of " + deepcopyDeck.cards.ElementAt(i).Suit + "\t|\t");
-                Console.WriteLine(deck.cards.ElementAt(i).String_Value + " of " + deck.cards.ElementAt(i).Suit);
+                Console.WriteLine("Player 1 Wins!");
+            }
+            else if (player1.Cards[0].Integer_Value < player2.Cards[0].Integer_Value)
+            {
+                Console.WriteLine("Player 2 Wins!");
+            }
+            else
+            {
+                Console.WriteLine("Draw");
             }
 
             Console.ReadLine();

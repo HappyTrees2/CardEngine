@@ -130,6 +130,25 @@ namespace CardEngine.Library
             }
         }
 
+        public Card GiveTopCard()
+        {
+            try
+            {
+                Card returnCard = this.cards[0];
+                this.cards.RemoveAt(0);
+                return returnCard;
+            }
+            catch
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
+        public void TakeCardToTop(Card card)
+        {
+            this.cards.Insert(0, card);
+        }
+
         public Deck(string options)
         {
             cards = new List<Card>();
@@ -156,6 +175,33 @@ namespace CardEngine.Library
 
             }
 
+        }
+    }
+
+    public class Player
+    {
+        private List<Card> cards;
+
+        public List<Card> Cards
+        {
+            get
+            {
+                return this.cards;
+            }
+            set
+            {
+                this.cards = value;
+            }
+        }
+
+        public void TakeCard(Card card)
+        {
+            cards.Add(card);
+        }
+
+        public Player()
+        {
+            cards = new List<Card>();
         }
     }
 }

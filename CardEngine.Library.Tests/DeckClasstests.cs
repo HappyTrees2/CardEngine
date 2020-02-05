@@ -58,5 +58,22 @@ namespace CardEngine.Library.Tests
                 Assert.IsFalse(deepcopyDeck.cards[i].Equals(deck.cards[i]));
             }
         }
+
+        [Test]
+        public void DeckGiveTopCard_ReturnsCard()
+        {
+            Deck deck = new Deck("standard");
+            Card card = deck.GiveTopCard();
+            Assert.IsTrue(card.Integer_Value == 1 && card.Suit == "Clubs");
+        }
+
+        [Test]
+        public void DeckTakeCardToTop_TakesCard()
+        {
+            Deck deck = new Deck("empty");
+            Card card = new Card("Ace", "Clubs");
+            deck.TakeCardToTop(card);
+            Assert.IsTrue(deck.cards[0].Equals(new Card("Ace", "Clubs")));
+        }
     }
 }
