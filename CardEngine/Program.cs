@@ -15,6 +15,24 @@ namespace CardEngine
             Player player1 = new Player();
             Player player2 = new Player();
 
+            do
+            {
+                gameLoop(deck, player1, player2);
+                if (deck.cards.Count < 2)
+                {
+                    Console.WriteLine("The deck is out of cards! Press enter to end game.");
+                    Console.ReadLine();
+                    break;
+                }
+                else
+                {
+                    Console.Write("Again? (y/n): ");
+                }
+            } while (Console.ReadLine().ToLower() == "y");
+        }
+
+        static void gameLoop(Deck deck, Player player1, Player player2)
+        {
             deck.shuffle();
             player1.TakeCard(deck.GiveTopCard());
             player2.TakeCard(deck.GiveTopCard());
@@ -24,18 +42,19 @@ namespace CardEngine
 
             if (player1.Cards[0].Integer_Value > player2.Cards[0].Integer_Value)
             {
-                Console.WriteLine("Player 1 Wins!");
+                Console.WriteLine("PLAYER 1 WINS!");
             }
             else if (player1.Cards[0].Integer_Value < player2.Cards[0].Integer_Value)
             {
-                Console.WriteLine("Player 2 Wins!");
+                Console.WriteLine("PLAYER 2 WINS!");
             }
             else
             {
-                Console.WriteLine("Draw");
+                Console.WriteLine("DRAW");
             }
-
-            Console.ReadLine();
+            player1.TrashHand();
+            player2.TrashHand();
+            Console.WriteLine();
         }
     }
 }

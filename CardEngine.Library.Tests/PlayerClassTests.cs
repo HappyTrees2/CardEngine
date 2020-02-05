@@ -31,5 +31,18 @@ namespace CardEngine.Library.Tests
             player.TakeCard(deck.GiveTopCard());
             Assert.IsTrue(player.Cards.Contains(targetCard));
         }
+
+        [Test]
+        public void PlayerTrashHand_TrashesHand()
+        {
+            Deck deck = new Deck("standard");
+            Card targetCard = deck.cards[0];
+            Player player = new Player();
+            player.TakeCard(deck.GiveTopCard());
+            Assert.IsTrue(player.Cards.Contains(targetCard));
+
+            player.TrashHand();
+            Assert.IsTrue(player.Cards.Count == 0);
+        }
     }
 }

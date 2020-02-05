@@ -199,6 +199,11 @@ namespace CardEngine.Library
             cards.Add(card);
         }
 
+        public void TrashHand()
+        {
+            cards.Clear();
+        }
+
         public Player()
         {
             cards = new List<Card>();
