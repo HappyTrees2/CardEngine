@@ -15,20 +15,26 @@ namespace CardEngine
             Player player1 = new Player();
             Player player2 = new Player();
 
-            do
+            Console.WriteLine("1) Start Game");
+            Console.WriteLine("q) Quit");
+
+            if (Console.ReadLine() == "1")
             {
-                gameLoop(deck, player1, player2);
-                if (deck.cards.Count < 2)
+                do
                 {
-                    Console.WriteLine("The deck is out of cards! Press enter to end game.");
-                    Console.ReadLine();
-                    break;
-                }
-                else
-                {
-                    Console.Write("Again? (y/n): ");
-                }
-            } while (Console.ReadLine().ToLower() == "y");
+                    gameLoop(deck, player1, player2);
+                    if (deck.cards.Count < 2)
+                    {
+                        Console.WriteLine("The deck is out of cards! Press enter to end game.");
+                        Console.ReadLine();
+                        break;
+                    }
+                    else
+                    {
+                        Console.Write("Again? (y/n): ");
+                    }
+                } while (Console.ReadLine().ToLower() == "y");
+            }
         }
 
         static void gameLoop(Deck deck, Player player1, Player player2)
