@@ -106,13 +106,37 @@ namespace CardEngine.Library
     {
         public readonly List<Card> cards;
 
+        public Deck DeepCopy()
+        {
+            Deck deepcopyDeck = new Deck("empty");
+            foreach (Card originalCard in this.cards)
+            {
+                deepcopyDeck.cards.Add(new Card(originalCard.String_Value, originalCard.Suit));
+            }
+            return deepcopyDeck;
+        }
+
+        public void shuffle()
+        {
+            Random random = new Random();   //https://www.c-sharpcorner.com/article/generating-random-number-and-string-in-C-Sharp/
+            int alreadyShuffledIndex = 0;
+            for (int i = 0; i < this.cards.Count - 1; i++)
+            {
+                int swapIndex = random.Next(alreadyShuffledIndex + 1, this.cards.Count - 1);
+                Card swapCard = this.cards.ElementAt(i);
+                this.cards[i] = this.cards.ElementAt(swapIndex);
+                this.cards[swapIndex] = swapCard;
+                ++alreadyShuffledIndex;
+            }
+        }
+
         public Deck(string options)
         {
+            cards = new List<Card>();
+            string[] suits = new string[4] { "Clubs", "Hearts", "Spades", "Diamonds" };
             switch (options)
             {
                 case "standard":
-                    cards = new List<Card>();
-                    string[] suits = new string[4] { "Clubs", "Hearts", "Spades", "Diamonds" };
                     foreach (string suit in suits)
                     {
                         for (int val = 1; val <= 13; val++)
@@ -121,6 +145,15 @@ namespace CardEngine.Library
                         }
                     }
                     break;
+                case "aces":
+                    foreach (string suit in suits)
+                    {
+                        cards.Add(new Card("1", suit));
+                    }
+                    break;
+                default:
+                    break;
+
             }
 
         }

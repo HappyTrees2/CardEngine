@@ -34,5 +34,29 @@ namespace CardEngine.Library.Tests
                 }
             }
         }
+
+        [Test]
+        public void DeckDeepCopy_ReturnsCopy()
+        {
+            Deck deck = new Deck("standard");
+            Deck deepcopyDeck = (Deck)deck.DeepCopy();  //https://www.geeksforgeeks.org/shallow-copy-and-deep-copy-in-c-sharp/
+            for (int i = 0; i < deck.cards.Count; i++)
+            {
+                Assert.IsTrue(deepcopyDeck.cards.ElementAt(i).Equals(deck.cards.ElementAt(i)));
+            }
+        }
+
+        [Test]
+        public void DeckShuffle_ShufflesDeck()
+        {
+            Deck deck = new Deck("standard");
+            Deck deepcopyDeck = (Deck)deck.DeepCopy();
+            deck.shuffle();
+            for (int i = 0; i < deck.cards.Count; i++)
+            {
+                Assert.IsTrue(deepcopyDeck.cards.Contains(deck.cards.ElementAt(i)));
+                Assert.IsFalse(deepcopyDeck.cards[i].Equals(deck.cards[i]));
+            }
+        }
     }
 }

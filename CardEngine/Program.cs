@@ -12,11 +12,17 @@ namespace CardEngine
         static void Main(string[] args)
         {
             Deck deck = new Deck("standard");
+            Deck deepcopyDeck = (Deck)deck.DeepCopy();
 
-            for (int i = 0; i < 52; i++)
+            deck.shuffle();
+
+            for (int i = 0; i < deck.cards.Count; i++)
             {
+                Console.Write(deepcopyDeck.cards.ElementAt(i).String_Value + " of " + deepcopyDeck.cards.ElementAt(i).Suit + "\t|\t");
                 Console.WriteLine(deck.cards.ElementAt(i).String_Value + " of " + deck.cards.ElementAt(i).Suit);
             }
+
+            Console.ReadLine();
         }
     }
 }
