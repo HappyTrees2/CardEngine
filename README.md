@@ -1,5 +1,5 @@
 # CardEngine
-A C# engine library for simulating card games. Includes a full NUnit TDD suite. A demo gameloop is provided in CardEngine/Program.cs. Implementation of various functions used in demo are found in CardEngine.Library.
+A C# engine for simulating card games. Includes a full NUnit TDD suite. A demo gameloop is provided in CardEngine/Program.cs. Implementation of various functions used in demo are found in CardEngine.Library.
 
 For this project, I've referred to various specification pages across the web for proper syntax and function useage.
 
